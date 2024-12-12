@@ -6,6 +6,7 @@ import os
 from win32com import client
 from PyPDF2 import PdfMerger
 import errno 
+import openpyxl
 from openpyxl import load_workbook
 from shutil import rmtree
 
@@ -95,11 +96,25 @@ for direquipo in(listsequiposdir):
 
                 wb.remove(ws0)
                 ws1.delete_rows(40,81)
-                ws1.print_area = 'A1:E10'
-                ws2.print_area = 'A1:F10'
-                ws2.column_dimensions['D'].width = 6
-                ws2.column_dimensions['E'].width = 7
-            
+
+                ws1.print_area = 'A1:F13'
+                ws1.page_setup.orientation = ws1.ORIENTATION_LANDSCAPE # Establecer la orientación de la página a horizontal  
+                ws1.page_setup.paperSize = ws1.PAPERSIZE_A3  # Establecer el tamaño del papel en A4 (puedes cambiarlo a A5 o el que necesites)  
+                ws1.sheet_view.view = "pageLayout"
+                ws1.sheet_properties.pageSetUpPr.fitToPage = True
+                # ws1.page_setup.fitToHeight = False
+                # ws1.page_setup.fitToPage = True   
+                ws1.page_setup.fitToWidth = 1  # Ajustar a 1 página de ancho  
+                ws1.page_setup.fitToHeight = 1  # Sin límite en las páginas de alto      
+
+                ws2.print_area = 'A1:F25'
+                ws2.page_setup.orientation = ws1.ORIENTATION_LANDSCAPE # Establecer la orientación de la página a horizontal  
+                ws2.page_setup.paperSize = ws1.PAPERSIZE_A3  # Establecer el tamaño del papel en A4 (puedes cambiarlo a A5 o el que necesites)
+                ws2.sheet_view.view = "pageLayout"
+                ws2.sheet_properties.pageSetUpPr.fitToPage = True 
+                ws2.page_setup.fitToWidth = 1  # Ajustar a 1 página de ancho  
+                ws2.page_setup.fitToHeight = 1  # Sin límite en las páginas de alto   
+                
                 wb.save(f'./temporaly/{numero_equipo}.xlsx')
                 wb.close()
                 # print(f'{directorioactual}/temporaly/EPB{numero_equipo_raw}.xlsx')
@@ -118,4 +133,4 @@ for direquipo in(listsequiposdir):
             #     fusionador_final.write(output)
             #     fusionador_final.close()
 
-rmtree(f'./temporaly') # Elimina el directorio auxiliar 
+# rmtree(f'./temporaly') # Elimina el directorio auxiliar 

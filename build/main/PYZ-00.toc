@@ -1,4 +1,4 @@
-('G:\\Mi unidad\\MIGUEL drive\\PDF_MERGER\\build\\main\\PYZ-00.pyz',
+('C:\\Users\\ingen\\Desktop\\Repositorios\\CHECKLIST_MERGER\\build\\main\\PYZ-00.pyz',
  [('PIL',
    'C:\\Users\\ingen\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\PIL\\__init__.py',
    'PYMODULE'),
